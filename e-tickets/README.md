@@ -18,4 +18,10 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## what I think is worth to note down
+
+### where should image locate, "assets" or "static"? And what is the difference between them?
+
+webpack will not process those sources in the static, it just simply copy to the distance.
+
+And think about those in assets, they will be copy and rename.
