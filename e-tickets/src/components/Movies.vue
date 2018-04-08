@@ -1,12 +1,13 @@
 <template>
   <li id="movie">
     <img v-bind:src="image" v-bind:alt="title">
-    <div>
+    <div id="detail">
       <div class="title">{{ title }}</div>
       <div class="info">评分 : {{ score }}</div>
       <div class="info">导演 : {{ director }}</div>
       <ul v-for="(actor,index) in actors" v-bind:key="index"></ul>
     </div>
+    <span class="purchase">购票</span>
   </li>
 </template>
 <script>
@@ -31,6 +32,9 @@ export default {
   margin-right: 3%;
 }
 
+#detail {
+  width: 50%;
+}
 .title {
   font-size: 1.2rem;
   color: black;
@@ -38,5 +42,17 @@ export default {
 
 .info {
   color:gray;
+}
+
+.purchase {
+  margin-top: 3.3%;
+  float: right;
+  width: 18%;
+  height: 15%;
+  border-radius: 25%;
+  background-color: rgb(51, 153, 255);
+  align-self: flex-start;
+  text-align: center;
+  color: white;
 }
 </style>

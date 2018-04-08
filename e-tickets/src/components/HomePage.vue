@@ -6,13 +6,14 @@
     <ul id="movielist">
       <li
        is="movie"
-       v-for="(item,index) in movielist"
+       v-for="(item, index) in movielist"
        v-bind:key="index"
        v-bind:image="item.image"
        v-bind:score="item.score"
        v-bind:title="item.title"
        v-bind:director="item.director"
        v-bind:actors="item.actors"
+       v-on:click="$emit('onMovieSelected', item)"
       ></li>
     </ul>
   </div>
@@ -24,6 +25,7 @@ export default {
     return {
       movielist: [
         {
+          mid: '000012',
           image: '/static/img/movie00001.jpg',
           score: '9.2',
           title: '头号玩家',

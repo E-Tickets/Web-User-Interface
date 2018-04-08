@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view id="contents"></router-view>
+    <router-view
+      id="contents"
+      v-on:onMovieSelected="jumpToMovie($event)"
+    ></router-view>
     <ul id="tags">
       <li>
         <!-- 使用router-link指向定义的path -->
@@ -19,7 +22,7 @@
         </router-link>
       </li>
       <li>
-        <router-link :to="{name: 'Mine'}">
+        <router-link :to="{name: 'Home'}">
           我的
         </router-link>
       </li>
@@ -29,7 +32,13 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+    jumpToMovie (item) {
+      console.log('jump happend.')
+      alert('123', item)
+    }
+  }
 }
 </script>
 
