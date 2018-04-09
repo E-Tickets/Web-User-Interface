@@ -26,7 +26,7 @@ export default {
   border-block-end: 1px solid black;
 }
 #movie img {
-  width:22.2%;
+  width:20%;
   height: 70%;
   background-color: wheat;
   margin-right: 3%;
@@ -36,7 +36,7 @@ export default {
   width: 50%;
 }
 .title {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: black;
 }
 
