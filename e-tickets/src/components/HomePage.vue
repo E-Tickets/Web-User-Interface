@@ -1,7 +1,23 @@
 <template>
   <div id="hot">
     <div id="swipe">
-      todo: swipe
+      <transition-group tag="ul" name="list">
+        <li
+        v-for="(item, index) in slideList"
+        v-bind:key="index"
+        v-show="index===currentIndex"
+        @mouseenter="stop"
+        @mouseleave="go"
+        >
+        <!--
+          use v-show to control whith one to display, and set timeout to change currentIndex.
+          add event mousenter and mouseleave to stop and continue the swipe
+        -->
+          <a v:bind:href="item.clickUrl">
+            <img v-bind:src="item.image" v-bind:alt="item.detail">
+          </a>
+        </li>
+      </transition-group>
     </div>
     <ul id="movielist">
       <li
@@ -23,6 +39,23 @@ import Movie from '@/components/Movies'
 export default {
   data () {
     return {
+      slideList: [{
+        clickUrl: '#',
+        detail: '001',
+        image: ''
+      },
+      {
+        clickUrl: '#',
+        detail: '002',
+        image: ''
+      },
+      {
+        clickUrl: '#',
+        detail: '003',
+        image: ''
+      }],
+      currentIndex: 0,
+      timer: '',
       movielist: [
         {
           mid: '000012',
@@ -46,6 +79,33 @@ export default {
   },
   components: {
     Movie
+  },
+  created () {
+    this.$nextTick(() => {
+      this.timer = setInterval(() => {
+        this.autoPlay()
+      }, 4000)
+    })
+  },
+  methods: {
+    go () {
+      this.timer = setInterval(() => {
+        this.autoPlay()
+      }, 4000)
+    },
+    stop () {
+      clearInterval(this.timer)
+      this.timer = null
+    },
+    change (index) {
+      this.currentIndex = index
+    },
+    autoPlay () {
+      this.currentIndex++
+      if (this.currentIndex > this.slideList.length - 1) {
+        this.currentIndex = 0
+      }
+    }
   }
 }
 </script>
@@ -53,7 +113,31 @@ export default {
   #swipe {
     height: 25%;
     color: red;
-    background-color: #00f0f0;
+    /* background-color: #00f0f0; */
+  }
+  #swipe ul {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  #swipe li {
+    width: 100%;
+    height: 100%;
+  }
+  .list-enter-to {
+    transition: all 1s ease;
+    transform: translateX(0);
+  }
+  .list-leave-active {
+    transition: all 1s ease;
+    transform: translateX(-100%)
+  }
+  .list-enter {
+    transform: translateX(100%)
+  }
+  .list-leave {
+    transform: translateX(0)
   }
   #movielist {
     height: 75%;
