@@ -14,7 +14,7 @@
           add event mousenter and mouseleave to stop and continue the swipe
         -->
           <a v:bind:href="item.clickUrl">
-            <img v-bind:src="item.image" v-bind:alt="item.detail">
+            <img class="swipeinamge" v-bind:src="item.image" v-bind:alt="item.detail">
           </a>
         </li>
       </transition-group>
@@ -42,17 +42,17 @@ export default {
       slideList: [{
         clickUrl: '#',
         detail: '001',
-        image: ''
+        image: '/static/img/swipe00001.jpg'
       },
       {
         clickUrl: '#',
         detail: '002',
-        image: ''
+        image: '/static/img/swipe00002.jpeg'
       },
       {
         clickUrl: '#',
         detail: '003',
-        image: ''
+        image: '/static/img/swipe00003.png'
       }],
       currentIndex: 0,
       timer: '',
@@ -138,6 +138,9 @@ export default {
   }
   .list-leave {
     transform: translateX(0)
+  }
+  .swipeinamge {
+    width:100%;
   }
   #movielist {
     height: 75%;
