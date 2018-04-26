@@ -25,3 +25,43 @@ npm run build --report
 webpack will not process those sources in the static, it just simply copy to the distance.
 
 And think about those in assets, they will be copy and rename.
+
+### how the dist file structure is， and how to change it
+
+old:
+
+``` lang = file
+dist
+ ├── static
+ │   │── js
+ │   │   ├── main.css
+ │   │   ├── mainA.js
+ │   │   └── mainB.js
+ │   └── css
+ │       ├── a.css
+ │       └── b.css
+ │
+ └── index.html
+```
+
+ change here : config/index.js line 54
+
+``` lang = js
+    //assetsSubDirectory: 'static'
+    assetsSubDirectory: '',
+```
+
+new:
+
+```
+dist
+ │── js
+ │   ├── main.css
+ │   ├── mainA.js
+ │   └── mainB.js
+ ├── css
+ │   ├── a.css
+ │   └── b.css
+ │
+ └── index.html
+```

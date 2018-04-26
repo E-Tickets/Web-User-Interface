@@ -8,6 +8,7 @@ module.exports = {
   dev: {
 
     // Paths
+    // assetsSubDirectory: '/',
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {},
@@ -49,7 +50,8 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    // assetsSubDirectory: 'static', change here to modify the file structure of dist !!！
+    assetsSubDirectory: '',    
     assetsPublicPath: '/',
 
     /**

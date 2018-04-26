@@ -80,13 +80,6 @@ export default {
   components: {
     Movie
   },
-  created () {
-    this.$nextTick(() => {
-      this.timer = setInterval(() => {
-        this.autoPlay()
-      }, 4000)
-    })
-  },
   methods: {
     go () {
       this.timer = setInterval(() => {
@@ -106,6 +99,13 @@ export default {
         this.currentIndex = 0
       }
     }
+  },
+  created () {
+    this.$nextTick(() => {
+      this.timer = setInterval(() => {
+        this.autoPlay()
+      }, 4000)
+    })
   }
 }
 </script>
