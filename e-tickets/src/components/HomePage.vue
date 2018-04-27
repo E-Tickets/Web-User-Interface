@@ -29,6 +29,7 @@
        v-bind:title="item.title"
        v-bind:director="item.director"
        v-bind:actors="item.actors"
+       v-bind:tags="item.tags"
        v-on:click="$emit('onMovieSelected', item)"
       ></li>
     </ul>
