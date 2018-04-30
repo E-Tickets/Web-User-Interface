@@ -8,17 +8,12 @@
       <li>
         <!-- 使用router-link指向定义的path -->
         <router-link :to="{name: 'Home'}">
-          热映
+          电影
         </router-link>
       </li>
       <li>
         <router-link :to="{name: 'Home'}">
-          待定
-        </router-link>
-      </li>
-      <li>
-        <router-link :to="{name: 'Home'}">
-          待定
+          发现
         </router-link>
       </li>
       <li>
@@ -47,7 +42,6 @@ html, body {
   width: 100%;
   height: 100%;
   margin:0;
-  font-size: 62.5%;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -60,31 +54,42 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-@media screen and (max-width: 800px){
-  #contents {
-    height: 90%;
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  padding: 0;
+  list-style: none;
+}
+#contents {
+  height: 90.7%;
+}
+#tags {
+  height: 9.3%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+#tags li {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 450px){
+  html {
+    font-size: 8px;
   }
-
-  #tags {
-    height: 10%;
-    display: flex;
-    justify-content: center;
+}
+@media screen and (min-width: 539px){
+  html {
+    font-size: 12px;
   }
-
-  li {
-    list-style: none;
-  }
-  #tags li {
-    width: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  /* a { */
-  /* } */
-  ul {
-    margin: 0;
-    padding: 0;
+}
+@media screen and (min-width: 719px){
+  html {
+    font-size: 16px;
   }
 }
 </style>

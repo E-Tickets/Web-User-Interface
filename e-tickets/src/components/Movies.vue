@@ -3,8 +3,9 @@
     <img v-bind:src="image" v-bind:alt="title">
     <div id="detail">
       <div class="title">{{ title }}</div>
-      <div class="info">评分 : {{ score }}</div>
+      <div class="info">豆瓣评分 &nbsp;: &nbsp; <span class="score">{{ score }}</span></div>
       <div class="info">导演 : {{ director }}</div>
+      <div class="info">演员 : </div>
       <ul v-for="(actor, index) in actors" v-bind:key="index"></ul>
       <!-- <ul v-for="(tag,index) in tags" v-bind:key="index"></ul> -->
     </div>
@@ -23,33 +24,36 @@ export default {
 </script>
 <style>
 #movie {
-  width:100%;
-  padding: 3.3%;
+  width: 99%;
   margin:0;
-  color: yellow;
   display: flex;
   flex-direction: row;
-  border-block-end: 1px solid black;
+  border: 0.2rem solid rgba(00,33,66,0.6);
 }
 #movie img {
-  width:20%;
-  height: 70%;
+  height: 80%;
+  width: 24%;
   background-color: wheat;
-  margin-right: 3%;
+  margin: 4% 4% 4% 4%;
 }
 
 #detail {
-  width: 50%;
+  margin: 4% 0% 4% 0%;
+  width: 68%;
 }
 .title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: black;
 }
 
 .info {
+  margin-top: 4%;
   color:gray;
 }
-
+.score {
+  font-size: 2rem;
+  color: rgb(255, 200, 100);
+}
 .purchase {
   margin-top: 3.3%;
   float: right;

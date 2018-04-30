@@ -1,5 +1,6 @@
 <template>
   <div id="hot">
+    <div id="search"></div>
     <div id="swipe">
       <transition-group tag="ul" name="list">
         <li
@@ -19,6 +20,11 @@
         </li>
       </transition-group>
     </div>
+    <ul id="subtags">
+      <li>正在热映</li>
+      <li>即将上映</li>
+      <li>我的关注</li>
+    </ul>
     <ul id="movielist">
       <li
        is="movie"
@@ -68,7 +74,7 @@ export default {
           tags: ['动作', '科幻', '冒险']
         },
         {
-          image: 'url2',
+          image: '/static/img/movie00001.jpg',
           score: '8.9',
           title: '环太平洋:雷霆再起',
           director: '斯蒂文·S·迪奈特',
@@ -111,10 +117,13 @@ export default {
 }
 </script>
 <style>
+  #search {
+    height: 8%;
+  }
+
   #swipe {
-    height: 25%;
+    height: 19%;
     color: red;
-    /* background-color: #00f0f0; */
   }
   #swipe ul {
     position: relative;
@@ -143,10 +152,21 @@ export default {
   .swipeinamge {
     width:100%;
   }
+
+  #subtags {
+    border: 0.2rem solid rgba(00,33,66,0.6);
+    width:99%;
+    height: 6%;
+    display: flex;
+    flex-direction:row;
+  }
+  #subtags li{
+    margin:auto;
+  }
   #movielist {
-    height: 75%;
+    height: 67%;
   }
   #movielist li {
-    height: 30%;
+    height: 36%;
   }
 </style>
