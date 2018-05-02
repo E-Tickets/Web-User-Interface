@@ -1,6 +1,17 @@
 <template>
   <div id="hot">
-    <div id="search"></div>
+    <div id="search">
+      <div id="location">
+        <img src="../assets/location.png" alt="">
+        <span>广州</span>
+        <img src="" alt="">
+      </div>
+      <div id="searchinput">
+        <img src="../assets/search.png" alt="">
+        <input type="text" name="" id="">
+        <img src="" alt="">
+      </div>
+    </div>
     <div id="swipe">
       <transition-group tag="ul" name="list">
         <li
@@ -118,7 +129,46 @@ export default {
 </script>
 <style>
   #search {
+    width: 100%;
     height: 8%;
+    font-size: 1.75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    background-color: rgb(0, 100, 153);
+  }
+  #location {
+    width: 20%;
+    height: 43%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  #location img{
+    height: 2rem;
+    width:2rem;
+  }
+  #searchinput{
+    height: 49%;
+    width: 67%;
+    border: black solid 1px;
+    border-radius: 1.25rem;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  #searchinput img{
+    width:7%;
+    height: 80%;
+  }
+  #searchinput input{
+    width: 80%;
+    border:none;
+    padding: 0;
   }
 
   #swipe {
