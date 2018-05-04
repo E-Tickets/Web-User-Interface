@@ -5,9 +5,8 @@
       <div class="title">{{ title }}</div>
       <div class="info">豆瓣评分 &nbsp;: &nbsp; <span class="score">{{ score }}</span></div>
       <div class="info">导演 : {{ director }}</div>
-      <div class="info">演员 : </div>
-      <ul v-for="(actor, index) in actors" v-bind:key="index"></ul>
-      <!-- <ul v-for="(tag,index) in tags" v-bind:key="index"></ul> -->
+      <div class="info">主演 : {{actors }}</div>
+      <!-- <ul v-for="(act, index) in actor" v-bind:key="index"></ul> -->
     </div>
     <span class="purchase" v-on:click="clickevent()">购票</span>
   </li>
@@ -47,7 +46,7 @@ export default {
 }
 
 .info {
-  margin-top: 4%;
+  margin-top: 7%;
   color:gray;
 }
 .score {
@@ -55,12 +54,14 @@ export default {
   color: rgb(255, 200, 100);
 }
 .purchase {
-  margin-top: 3.3%;
-  float: right;
+  position: relative;
+  top: 3rem;
+  right: 3.5rem;
+  text-align: center;
   width: 18%;
-  height: 18%;
-  border-radius: 50%;
-  background-color: rgb(51, 153, 255);
+  height: 2rem;
+  border-radius: 0.2rem ;
+  background-color: rgb(00,100,155);
   align-self: flex-start;
   text-align: center;
   color: white;

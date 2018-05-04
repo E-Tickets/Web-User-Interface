@@ -7,16 +7,19 @@
     <ul id="tags">
       <li>
         <!-- 使用router-link指向定义的path -->
+        <img src="./assets/movie.png" alt="">
         <router-link :to="{name: 'Home'}">
           电影
         </router-link>
       </li>
       <li>
+        <img src="./assets/news2.png" alt="">
         <router-link :to="{name: 'Home'}">
           发现
         </router-link>
       </li>
       <li>
+        <img src="./assets/user2.png" alt="">
         <router-link :to="{name: 'Home'}">
           我的
         </router-link>
@@ -62,21 +65,33 @@ li {
   padding: 0;
   list-style: none;
 }
+a {
+  text-decoration: none;
+}
 #contents {
   height: 90.7%;
+  /* scroll-behavior: auto; */
 }
 #tags {
+  border-top: gray 0.4rem solid;
   height: 9.3%;
   display: flex;
   justify-content: center;
   font-size: 1.75rem;
+  z-index: 10;
 }
 #tags li {
   margin: auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+#tags img {
+  height: 1.75rem;
+  width: 1.75rem;
+}
+
 @media screen and (max-width: 450px){
   html {
     font-size: 8px;

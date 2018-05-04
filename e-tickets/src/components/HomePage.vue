@@ -4,12 +4,12 @@
       <div id="location">
         <img src="../assets/location.png" alt="">
         <span>广州</span>
-        <img src="" alt="">
+        <img id="arrow" src="../assets/arrow2.png" alt="">
       </div>
       <div id="searchinput">
         <img src="../assets/search.png" alt="">
         <input type="text" name="" id="">
-        <img src="" alt="">
+        <img src="../assets/sacnSquare.png" alt="">
       </div>
     </div>
     <div id="swipe">
@@ -30,11 +30,18 @@
           </a>
         </li>
       </transition-group>
+      <div id="carousel-items">
+        <span
+        v-for="(item,index) in slideList.length"
+        v-bind:key="index"
+        :class="{'active':index===currentIndex}"
+        @mouseover="change(index)"></span>
+      </div>
     </div>
     <ul id="subtags">
-      <li>正在热映</li>
-      <li>即将上映</li>
-      <li>我的关注</li>
+      <li><a href="">正在热映</a></li>
+      <li><a href="">即将上映</a></li>
+      <li><a href="">我的关注</a></li>
     </ul>
     <ul id="movielist">
       <li
@@ -65,12 +72,12 @@ export default {
       {
         clickUrl: '#',
         detail: '002',
-        image: '/static/img/swipe00002.jpeg'
+        image: '/static/img/swipe00002.jpg'
       },
       {
         clickUrl: '#',
         detail: '003',
-        image: '/static/img/swipe00003.png'
+        image: '/static/img/swipe00003.jpg'
       }],
       currentIndex: 0,
       timer: '',
@@ -81,16 +88,24 @@ export default {
           score: '9.2',
           title: '头号玩家',
           director: '斯皮尔伯格',
-          actors: ['泰伊·谢里丹', 'others'],
-          tags: ['动作', '科幻', '冒险']
+          actors: '泰伊·谢里丹 奥莉维亚·库克'
+          // tags: ['动作', '科幻', '冒险']
         },
         {
           image: '/static/img/movie00001.jpg',
           score: '8.9',
           title: '环太平洋:雷霆再起',
           director: '斯蒂文·S·迪奈特',
-          actors: ['泰伊·谢里丹'],
-          tags: ['动作', '科幻', '冒险']
+          actors: '泰伊·谢里丹'
+          // tags: ['动作', '科幻', '冒险']
+        },
+        {
+          image: '/static/img/movie00001.jpg',
+          score: '8.9',
+          title: '环太平洋:雷霆再起',
+          director: '斯蒂文·S·迪奈特',
+          actors: '泰伊·谢里丹'
+          // tags: ['动作', '科幻', '冒险']
         }
       ]
     }
@@ -145,10 +160,11 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
   }
   #location img{
-    height: 2rem;
-    width:2rem;
+    height: 1.75rem;
+    width: 1.75rem;
   }
   #searchinput{
     height: 49%;
@@ -162,8 +178,8 @@ export default {
     align-items: center;
   }
   #searchinput img{
-    width:7%;
-    height: 80%;
+    width: 1.75rem;
+    height: 67%;
   }
   #searchinput input{
     width: 80%;
@@ -180,11 +196,33 @@ export default {
     overflow: hidden;
     width: 100%;
     height: 100%;
+    background-color: #fff;
   }
   #swipe li {
     width: 100%;
     height: 100%;
   }
+  #carousel-items {
+    position: relative;
+    bottom: 2rem;
+    width: 100%;
+    height: 2rem;
+    z-index: 10;
+    text-align: center;
+  }
+  #carousel-items span {
+    display: inline-block;
+    height: 1.75rem;
+    width: 1.75rem;
+    background-color: #b2b2b2;
+    cursor: pointer;
+    margin:0 0.5rem;
+    border-radius: 0.8725rem;
+  }
+  #carousel-items .active {
+    background-color: #6d6d6d;
+  }
+
   .list-enter-to {
     transition: all 1s ease;
     transform: translateX(0);
@@ -209,12 +247,19 @@ export default {
     height: 6%;
     display: flex;
     flex-direction:row;
+    font-size: 1.75rem;
   }
   #subtags li{
     margin:auto;
   }
+  #subtags a {
+    color: rgb(00,33,66);
+  }
+
   #movielist {
-    height: 67%;
+    height: 66.6%;
+    overflow: auto;
+    scroll-behavior: auto;
   }
   #movielist li {
     height: 36%;
