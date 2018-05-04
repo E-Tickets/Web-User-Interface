@@ -4,7 +4,7 @@
       <div id="location">
         <img src="../assets/location.png" alt="">
         <span>广州</span>
-        <img id="arrow" src="../assets/arrow2.png" alt="">
+        <img id="arrow" src="../assets/downArrow.png" alt="">
       </div>
       <div id="searchinput">
         <img src="../assets/search.png" alt="">
@@ -162,6 +162,11 @@ export default {
     justify-content: space-around;
     align-items: center;
   }
+
+  #location #arrow {
+    height: 1rem;
+    width: 1rem;
+  }
   #location img{
     height: 1.75rem;
     width: 1.75rem;
@@ -186,7 +191,10 @@ export default {
     border:none;
     padding: 0;
   }
-
+  #searchinput input:focus{
+    outline-offset: 0;
+    outline: none;
+  }
   #swipe {
     height: 19%;
     color: red;

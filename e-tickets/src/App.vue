@@ -5,18 +5,24 @@
       v-on:onMovieSelected="jumpToMovie($event)"
     ></router-view>
     <ul id="tags">
-      <li>
+      <li v-for="(item, index) in tags" v-bind:key="index">
+        <img v-bind:src="item.icon" alt="">
+        <span class="active">
+          {{item.tag}}
+        </span>
+      </li>
+      <li >
         <!-- 使用router-link指向定义的path -->
         <img src="./assets/movie.png" alt="">
         <router-link :to="{name: 'Home'}">
           电影
         </router-link>
       </li>
-      <li>
+      <li @click="goDiscoverPage()">
         <img src="./assets/news2.png" alt="">
-        <router-link :to="{name: 'Home'}">
+        <span class="active">
           发现
-        </router-link>
+        </span>
       </li>
       <li>
         <img src="./assets/user2.png" alt="">
@@ -31,10 +37,19 @@
 <script>
 export default {
   name: 'App',
+  data () {
+    return {
+      tags: [{tag:'电影',icon:'./assets/movie.png'},{tag:'发现',icon:'./assets/news2.png'},{tag:'我的',icon:'./assets/user2.png'}],
+      currentIndex: 0
+    }
+  },
   methods: {
     jumpToMovie (item) {
       console.log('jump happend.')
       alert('123', item)
+    },
+    goDiscoverPage () {
+      this.$router.push('name')
     }
   }
 }
