@@ -2,14 +2,14 @@
   <div id="hot">
     <div id="search">
       <div id="location">
-        <img src="../assets/location.png" alt="">
+        <img src="../../static/img/location.png" alt="">
         <span>广州</span>
-        <img id="arrow" src="../assets/downArrow.png" alt="">
+        <img id="arrow" src="../../static/img/downArrow.png" alt="">
       </div>
       <div id="searchinput">
-        <img src="../assets/search.png" alt="">
+        <img src="../../static/img/search.png" alt="">
         <input type="text" name="" id="">
-        <img src="../assets/sacnSquare.png" alt="">
+        <img src="../../static/img/sacnSquare.png" alt="">
       </div>
     </div>
     <div id="swipe">

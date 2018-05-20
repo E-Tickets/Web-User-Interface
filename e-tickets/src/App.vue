@@ -5,14 +5,14 @@
       v-on:onMovieSelected="jumpToMovie($event)"
     ></router-view>
     <ul id="tags">
-      <li v-for="(item, index) in tags" v-bind:key="index">
+      <li v-for="(item, index) in tags" v-bind:key="index" @click="pageJump(index)">
         <img v-bind:src="item.icon" alt="">
         <span class="active">
           {{item.tag}}
         </span>
       </li>
-      <li >
-        <!-- 使用router-link指向定义的path -->
+      <!-- <li >
+        使用router-link指向定义的path
         <img src="./assets/movie.png" alt="">
         <router-link :to="{name: 'Home'}">
           电影
@@ -29,7 +29,7 @@
         <router-link :to="{name: 'Home'}">
           我的
         </router-link>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>
@@ -39,7 +39,7 @@ export default {
   name: 'App',
   data () {
     return {
-      tags: [{tag:'电影',icon:'./assets/movie.png'},{tag:'发现',icon:'./assets/news2.png'},{tag:'我的',icon:'./assets/user2.png'}],
+      tags: [{tag: '电影', icon: '../static/img/movie.png'}, {tag: '发现', icon: '../static/img/news2.png'}, {tag: '我的', icon: '../static/img/user2.png'}],
       currentIndex: 0
     }
   },
@@ -48,8 +48,21 @@ export default {
       console.log('jump happend.')
       alert('123', item)
     },
-    goDiscoverPage () {
-      this.$router.push('name')
+    pageJump (index) {
+      // const target = window.ev.target
+      switch (index) {
+        case 0:
+          this.$router.push({name: 'Home'})
+          break
+        case 1:
+          this.$router.push({name: 'Discover'})
+          break
+        case 2:
+          this.$router.push({name: 'Mine'})
+          break
+        default:
+          break
+      }
     }
   }
 }
