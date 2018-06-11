@@ -1,5 +1,5 @@
 <template>
-  <li id="movie">
+  <li id="movie" v-on:click="clickevent()">
     <img v-bind:src="image" v-bind:alt="title">
     <div id="detail">
       <div class="title">{{ title }}</div>
@@ -8,15 +8,16 @@
       <div class="info">主演 : {{actors }}</div>
       <!-- <ul v-for="(act, index) in actor" v-bind:key="index"></ul> -->
     </div>
-    <span class="purchase" v-on:click="clickevent()">购票</span>
+    <span class="purchase">购票</span>
   </li>
 </template>
 <script>
 export default {
-  props: ['image', 'score', 'title', 'director', 'actors', 'tags'],
+  props: ['movieId', 'image', 'score', 'title', 'director', 'actors', 'tags'],
   methods: {
     clickevent () {
-      alert()
+      alert('son:' + this.movieId)
+      this.$emit('onMovieSelected', this.movieId)
     }
   }
 }

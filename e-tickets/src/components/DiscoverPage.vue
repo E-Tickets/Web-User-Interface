@@ -13,30 +13,50 @@
         </span>
       </li>
     </ul>
-    <ul id="newslist">
+    <ul id="newlist">
       <li
        is="new"
-      ></li>
-       <!-- v-for="(item, index) in movielist"
+       v-for="(item, index) in newslist"
        v-bind:key="index"
        v-bind:image="item.image"
-       v-bind:score="item.score"
        v-bind:title="item.title"
-       v-bind:director="item.director"
-       v-bind:actors="item.actors"
-       v-bind:tags="item.tags"
-       v-on:click="$emit('onMovieSelected', item)"
-      ></li> -->
+       v-bind:tag="item.tag"
+       v-bind:class="item.class"
+       v-bind:time="item.time"
+      ></li>
     </ul>
   </div>
 </template>
 <script>
+import New from '@/components/News'
 export default {
   data () {
     return {
-      subtags: [{tag: '话题', icon: '../static/img/chat.png'}, {tag: '台词', icon: '../static/img/words.png'}, {tag: '资讯', icon: '../static/img/message.png'}],
-      currentIndex: 0
+      subtags: [
+        {tag: '话题', icon: '../static/img/chat.png'},
+        {tag: '台词', icon: '../static/img/words.png'},
+        {tag: '资讯', icon: '../static/img/message.png'}
+      ],
+      newslist: [
+        {
+          title: '真假难辨！《复联4》片名被曝光为《End Game》?',
+          tag: '漫威',
+          class: '资讯',
+          time: '1小时前',
+          image: ''
+        },
+        {
+          title: '真假难辨！《复联4》片名被曝光为《End Game》?',
+          tag: '漫威',
+          class: '资讯',
+          time: '1小时前',
+          image: ''
+        }
+      ]
     }
+  },
+  components: {
+    New
   },
   methods: {
     changeContents (index) {
@@ -88,4 +108,13 @@ img{
 #stags span{
   margin: 2px 0 2px 0;
 }
+#newlist {
+  height: 66.6%;
+  overflow: auto;
+  scroll-behavior: auto;
+}
+#newlist li {
+  height: 36%;
+}
+
 </style>

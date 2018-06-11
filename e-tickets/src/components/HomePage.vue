@@ -48,13 +48,13 @@
        is="movie"
        v-for="(item, index) in movielist"
        v-bind:key="index"
+       v-bind:movieId="item.movieId"
        v-bind:image="item.image"
        v-bind:score="item.score"
        v-bind:title="item.title"
        v-bind:director="item.director"
        v-bind:actors="item.actors"
        v-bind:tags="item.tags"
-       v-on:click="$emit('onMovieSelected', item)"
       ></li>
     </ul>
   </div>
@@ -83,7 +83,7 @@ export default {
       timer: '',
       movielist: [
         {
-          mid: '000012',
+          movieId: '000012',
           image: '/static/img/movie00001.jpg',
           score: '9.2',
           title: '头号玩家',
@@ -92,6 +92,7 @@ export default {
           // tags: ['动作', '科幻', '冒险']
         },
         {
+          movieId: '123321',
           image: '/static/img/movie00001.jpg',
           score: '8.9',
           title: '环太平洋:雷霆再起',
@@ -100,6 +101,7 @@ export default {
           // tags: ['动作', '科幻', '冒险']
         },
         {
+          movieId: '123311',
           image: '/static/img/movie00001.jpg',
           score: '8.9',
           title: '环太平洋:雷霆再起',
@@ -131,6 +133,10 @@ export default {
       if (this.currentIndex > this.slideList.length - 1) {
         this.currentIndex = 0
       }
+    },
+    onMovieSelected (id) {
+      alert(id)
+      console.log('this movie: ' + id)
     }
   },
   created () {
