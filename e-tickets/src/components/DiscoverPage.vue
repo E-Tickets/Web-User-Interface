@@ -21,7 +21,7 @@
        v-bind:image="item.image"
        v-bind:title="item.title"
        v-bind:tag="item.tag"
-       v-bind:class="item.class"
+       v-bind:category="item.category"
        v-bind:time="item.time"
       ></li>
     </ul>
@@ -41,14 +41,14 @@ export default {
         {
           title: '真假难辨！《复联4》片名被曝光为《End Game》?',
           tag: '漫威',
-          class: '资讯',
+          category: '资讯',
           time: '1小时前',
           image: ''
         },
         {
           title: '真假难辨！《复联4》片名被曝光为《End Game》?',
           tag: '漫威',
-          class: '资讯',
+          category: '资讯',
           time: '1小时前',
           image: ''
         }
@@ -109,6 +109,7 @@ img{
   margin: 2px 0 2px 0;
 }
 #newlist {
+  font-size: 1.75rem;
   height: 66.6%;
   overflow: auto;
   scroll-behavior: auto;
