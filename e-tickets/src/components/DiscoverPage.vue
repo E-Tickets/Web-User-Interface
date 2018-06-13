@@ -43,7 +43,7 @@ export default {
           tag: '漫威',
           category: '资讯',
           time: '1小时前',
-          image: ''
+          image: '../static/img/new0001.jpg'
         },
         {
           title: '真假难辨！《复联4》片名被曝光为《End Game》?',

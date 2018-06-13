@@ -18,17 +18,24 @@ export default {
 </script>
 <style>
 #new {
-  width:100%;
+  width:auto;
   display: flex;
   flex-direction: row;
   border-top:0.2rem solid gray;
+  padding: 1.5rem;
 }
+
 *.text {
   width:53%;
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+#new img{
+  width: 40%;
+  height: 80%;
+  margin: auto;
+
+}
 </style>
