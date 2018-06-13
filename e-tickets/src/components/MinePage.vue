@@ -1,16 +1,16 @@
 <template>
   <div id="mine">
     <div id="user">
-      <img src="../../static/img/setting2.png" alt="">
+      <img class="iconimage" src="../../static/img/setting2.png" alt="">
       <div>
-        <img src="../../static/img/chat3.png" alt="">
-        <span>user</span>
+        <img id="usersnap" src="../../static/img/user2.png" alt="">
+        <span>未登录</span>
       </div>
-      <img src="../../static/img/chat3.png" alt="">
+      <img class="iconimage" src="../../static/img/warning2.png" alt="">
     </div>
     <ul id="XXX">
       <li v-for="(item, index) in XXX" v-bind:key="index" >
-        <img v-bind:src="item.icon" alt="">
+        <img class="iconimage" v-bind:src="item.icon" alt="">
         <span>
           {{item.tag}}
         </span>
@@ -38,17 +38,30 @@ export default {
   display: flex;
 }
 #user{
-  width: 100%;
-  height: 10%;
+  font-size: 2rem;
+  font-weight: 600;
+  width: auto;
+  padding: 2%;
+  height: 23%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-color: rgb(0, 100, 153);
+  text-align: center;
 }
 
 #user div{
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  margin:auto;
+}
+
+#usersnap {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 3rem;
+  background-color: gray;
 }
 
 #XXX {
@@ -63,7 +76,7 @@ export default {
   align-items: center;
 }
 
-img {
+.iconimage {
   width: 2rem;
   height: 2rem;
 }

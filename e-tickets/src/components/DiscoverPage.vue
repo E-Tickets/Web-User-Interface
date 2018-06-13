@@ -82,7 +82,7 @@ export default {
   color: white;
   background-color: rgb(0, 100, 153);
 }
-img{
+#search img{
   height: 1.75rem;
   width: 1.75rem;
 }
