@@ -106,7 +106,7 @@ a {
   display: flex;
   justify-content: center;
   font-size: 1.75rem;
-  z-index: 10;
+  z-index: 1;
 }
 #tags li {
   margin: auto;

@@ -1,5 +1,5 @@
 <template>
-  <div id="dis">
+  <div>
     <div id="search">
       <img src="../../static/img/chat3.png" alt="">
       <span>发现</span>
@@ -66,11 +66,6 @@ export default {
 }
 </script>
 <style>
-#dis{
-  width: 100%;
-  height: 100%;
-  font-size: 1.75rem;
-}
 #search {
   width: 100%;
   height: 8%;

@@ -1,5 +1,5 @@
 <template>
-  <div id="hot">
+  <div>
     <div id="search">
       <div id="location">
         <img src="../../static/img/location.png" alt="">

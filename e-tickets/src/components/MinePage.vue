@@ -1,5 +1,5 @@
 <template>
-  <div id="mine">
+  <div>
     <div id="user">
       <img class="iconimage" src="../../static/img/setting2.png" alt="">
       <div>
@@ -32,11 +32,6 @@ export default {
 }
 </script>
 <style>
-#mine {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
 #user{
   font-size: 2rem;
   font-weight: 600;
