@@ -50,7 +50,6 @@
        v-bind:key="index"
        v-bind:movieId="item.movieId"
        v-bind:image="item.poster"
-       v-bind:score="item.score"
        v-bind:title="item.title"
        v-bind:director="item.director"
        v-bind:actors="item.actors"
@@ -151,7 +150,12 @@ export default {
     // get the hot movie data
     this.$http.get('api/movies/status/1')
       .then((data) => {
-        this.movielist = data.data
+        const movies = data.body.data.movies
+        movies.forEach((item) => {
+          item.actors = item.actors.reduce((acc, item) => acc + ' ' + item)
+        })
+        console.log(movies)
+        this.movielist = movies
       })
     // this.$http.jsonp('api/movies/status/1')
     //   .then(function (response) {

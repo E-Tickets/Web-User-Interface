@@ -8,7 +8,7 @@ import VueResource from 'vue-resource'
 Vue.config.productionTip = false
 Vue.use(VueResource)
 
-Vue.http.options.root = 'http://172.18.157.240:8000'
+Vue.http.options.root = '/api'
 
 /* eslint-disable no-new */
 new Vue({

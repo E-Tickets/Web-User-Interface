@@ -11,7 +11,16 @@ module.exports = {
     // assetsSubDirectory: '/',
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    // !! added this item to fix the origin problem !! ~~~
+    proxyTable: {
+      '/api': {
+        target: 'http://172.18.157.240:8000', // set the host and port for test,and dont forget the http
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '/'
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

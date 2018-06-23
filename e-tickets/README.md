@@ -65,3 +65,23 @@ dist
  │
  └── index.html
 ```
+
+### in dev mode testing meet the origin problem
+
+add this item into config/index.js
+```lang = js
+dev{
+    // other item ...
+    proxyTable: {
+      '/api': {
+        target: 'http://172.18.157.240:8000', // set the host and port for test,and dont forget the http
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '/'
+        }
+      }
+    }
+    // other item ...
+}
+    
+```
