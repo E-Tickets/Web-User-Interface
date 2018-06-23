@@ -49,7 +49,7 @@
        v-for="(item, index) in movielist"
        v-bind:key="index"
        v-bind:movieId="item.movieId"
-       v-bind:image="item.image"
+       v-bind:image="item.poster"
        v-bind:score="item.score"
        v-bind:title="item.title"
        v-bind:director="item.director"
@@ -81,35 +81,37 @@ export default {
       }],
       currentIndex: 0,
       timer: '',
-      movielist: [
-        {
-          movieId: '000012',
-          image: '/static/img/movie00001.jpg',
-          score: '9.2',
-          title: '头号玩家',
-          director: '斯皮尔伯格',
-          actors: '泰伊·谢里丹 奥莉维亚·库克'
-          // tags: ['动作', '科幻', '冒险']
-        },
-        {
-          movieId: '123321',
-          image: '/static/img/movie00001.jpg',
-          score: '8.9',
-          title: '环太平洋:雷霆再起',
-          director: '斯蒂文·S·迪奈特',
-          actors: '泰伊·谢里丹'
-          // tags: ['动作', '科幻', '冒险']
-        },
-        {
-          movieId: '123311',
-          image: '/static/img/movie00001.jpg',
-          score: '8.9',
-          title: '环太平洋:雷霆再起',
-          director: '斯蒂文·S·迪奈特',
-          actors: '泰伊·谢里丹'
-          // tags: ['动作', '科幻', '冒险']
-        }
-      ]
+      movielist: ''
+      // under is for local test
+      // movielist: [
+      //   {
+      //     movieId: '000012',
+      //     image: '/static/img/movie00001.jpg',
+      //     score: '9.2',
+      //     title: '头号玩家',
+      //     director: '斯皮尔伯格',
+      //     actors: '泰伊·谢里丹 奥莉维亚·库克'
+      //     // tags: ['动作', '科幻', '冒险']
+      //   },
+      //   {
+      //     movieId: '123321',
+      //     image: '/static/img/movie00001.jpg',
+      //     score: '8.9',
+      //     title: '环太平洋:雷霆再起',
+      //     director: '斯蒂文·S·迪奈特',
+      //     actors: '泰伊·谢里丹'
+      //     // tags: ['动作', '科幻', '冒险']
+      //   },
+      //   {
+      //     movieId: '123311',
+      //     image: '/static/img/movie00001.jpg',
+      //     score: '8.9',
+      //     title: '环太平洋:雷霆再起',
+      //     director: '斯蒂文·S·迪奈特',
+      //     actors: '泰伊·谢里丹'
+      //     // tags: ['动作', '科幻', '冒险']
+      //   }
+      // ]
     }
   },
   components: {
@@ -140,13 +142,24 @@ export default {
     }
   },
   created () {
+    // set play time interval
     this.$nextTick(() => {
       this.timer = setInterval(() => {
         this.autoPlay()
       }, 4000)
     })
+    // get the hot movie data
+    this.$http.get('api/movies/status/1')
+      .then((data) => {
+        this.movielist = data.data
+      })
+    // this.$http.jsonp('api/movies/status/1')
+    //   .then(function (response) {
+    //     console.log(response.data)
+    //   })
   }
 }
+
 </script>
 <style>
   #search {

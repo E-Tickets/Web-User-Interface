@@ -1,7 +1,8 @@
 <template>
     <div>
         <div id="sign">
-
+            <span>用户名</span>
+            <span>密码</span>
         </div>
     </div>
 </template>
