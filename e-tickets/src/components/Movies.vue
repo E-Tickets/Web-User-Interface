@@ -3,7 +3,7 @@
     <img v-bind:src="image" v-bind:alt="title">
     <div id="detail">
       <div class="title">{{ title }}</div>
-      <div class="info">豆瓣评分 &nbsp;: &nbsp; <span class="score">{{ score }}</span></div>
+      <!-- <div class="info">豆瓣评分 &nbsp;: &nbsp; <span class="score">{{ score }}</span></div> -->
       <div class="info">导演 : {{ director }}</div>
       <div class="info">主演 : {{actors }}</div>
       <!-- <ul v-for="(act, index) in actor" v-bind:key="index"></ul> -->
@@ -15,9 +15,16 @@
 export default {
   props: ['movieId', 'image', 'score', 'title', 'director', 'actors', 'tags'],
   methods: {
-    clickevent () {
-      alert('son:' + this.movieId)
-      this.$emit('onMovieSelected', this.movieId)
+    clickevent (e) {
+      const ev = e || window.event
+      const target = ev.target || ev.srcElement
+      console.log(target.nodeName)
+      if (target.nodeName === 'SPAN') {
+        console.log('purchase:' + this.movieId)
+        // todo this.$router.push({name: 'moviedetail', params: {id: this.movieId}})
+      } else {
+        this.$router.push({name: 'moviedetail', params: {id: this.movieId}})
+      }
     }
   }
 }

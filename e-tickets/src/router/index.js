@@ -4,7 +4,7 @@ import HomePage from '@/components/HomePage'
 import DiscoverPage from '@/components/DiscoverPage'
 import MinePage from '@/components/MinePage'
 import SignInOnPage from '@/components/SignInOnPage'
-
+import MovieDetailPage from '@/components/MovieDetailPage'
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +28,11 @@ export default new Router({
       path: '/sign',
       name: 'Sign',
       component: SignInOnPage
+    },
+    {
+      path: '/moviedetail/:id',
+      name: 'moviedetail',
+      component: MovieDetailPage
     }
   ]
 })

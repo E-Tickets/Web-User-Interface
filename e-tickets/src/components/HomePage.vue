@@ -54,6 +54,7 @@
        v-bind:director="item.director"
        v-bind:actors="item.actors"
        v-bind:tags="item.tags"
+       v-on:click="onMovieSelected(item.movieId)"
       ></li>
     </ul>
   </div>
@@ -152,7 +153,9 @@ export default {
       .then((data) => {
         const movies = data.body.data.movies
         movies.forEach((item) => {
+          // use reduce: array to string
           item.actors = item.actors.reduce((acc, item) => acc + ' ' + item)
+          item.movieId = item.movie_id
         })
         console.log(movies)
         this.movielist = movies
