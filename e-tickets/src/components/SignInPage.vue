@@ -33,11 +33,13 @@ export default {
       const body = {}
       body.username = this.username
       body.password = this.password
-      this.$post('/api/session/user', body)
+      this.$http.post('api/session/user', body)
         .then((data) => {
           if (data.body.status === 'OK') {
             alert('登陆成功')
             // TODOs jump to ？ where
+          } else {
+            console.log(data)
           }
         })
     },

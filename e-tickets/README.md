@@ -44,7 +44,7 @@ dist
  └── index.html
 ```
 
- change here : config/index.js line 54
+change here : config/index.js line 54
 
 ``` lang = js
     //assetsSubDirectory: 'static'
@@ -62,6 +62,29 @@ dist
  ├── css
  │   ├── a.css
  │   └── b.css
+ │
+ └── index.html
+```
+
+[6.26] update
+newest:
+
+``` lang = js
+    //assetsSubDirectory: 'static'
+    assetsSubDirectory: 'static/user',
+```
+
+
+``` lang = file
+dist
+ ├── static
+ │   │── js
+ │   │   ├── main.css
+ │   │   ├── mainA.js
+ │   │   └── mainB.js
+ │   └── css
+ │       ├── a.css
+ │       └── b.css
  │
  └── index.html
 ```

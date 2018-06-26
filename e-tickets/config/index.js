@@ -60,7 +60,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     // assetsSubDirectory: 'static', change here to modify the file structure of dist !!！
-    assetsSubDirectory: '',    
+    assetsSubDirectory: 'static/user',
     assetsPublicPath: '/',
 
     /**

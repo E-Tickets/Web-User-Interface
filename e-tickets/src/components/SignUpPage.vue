@@ -56,8 +56,8 @@ export default {
       const body = {}
       body.username = this.username
       body.password = this.password
-      body.nikename = this.nikename
-      this.$post('/api/user', body)
+      body.nickname = this.nickname
+      this.$http.post('api/user', body)
         .then((data) => {
           if (data.body.status === 'OK') {
             alert('注册成功')
