@@ -4,28 +4,39 @@
       <img src="../../static/img/signin/title.png" alt="">
       <form>
         <span>
-          <img class="icon" src="../../static/img/signin/user.png" alt="">
+          <img class="icon" src="../../static/img/signup/user.png" alt="">
           <input v-model="username" type="text" />
         </span>
         <span>
-          <img class="icon" src="../../static/img/signin/password.png" alt="">
-          <input v-model="password" type="text" />
+          <img class="icon" src="../../static/img/signup/nickname.png" alt="">
+          <input v-model="nickname" type="text" />
         </span>
         <span>
-          <img class="icon" src="../../static/img/signin/password.png" alt="">
-          <input v-model="password" type="text" />
+          <img class="icon" src="../../static/img/signup/password.png" alt="">
+          <input v-model="password" type="password" />
         </span>
         <span>
-          <img class="icon" src="../../static/img/signin/password.png" alt="">
-          <input v-model="password" type="text" />
+          <img class="icon" src="../../static/img/signup/ensure.png" alt="">
+          <input v-model="passwordconfirm" type="password" />
         </span>
         <div>
-          <input id="signupbutton" type="button" value="注册" >
+          <input id="signupbutton" type="button" value="完成注册" v-on:click="signUp()">
         </div>
       </form>
-      <div>
-        <p></p>
-        <ul></ul>
+      <div id="third">
+        <p>第三方账户登录</p>
+        <hr>
+        <ul>
+          <li>
+            <img src="../../static/img/signup/qq.png" alt="">
+          </li>
+          <li>
+            <img src="../../static/img/signup/wechat.png" alt="">
+          </li>
+          <li>
+            <img src="../../static/img/signup/weibo.png" alt="">
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -35,24 +46,24 @@ export default {
   data () {
     return {
       username: '用户名',
-      password: '密码'
+      nickname: '昵称',
+      password: '密码',
+      passwordconfirm: '确认密码'
     }
   },
   methods: {
-    signIn () {
+    signUp () {
       const body = {}
       body.username = this.username
       body.password = this.password
-      this.$post('/api/session/user', body)
+      body.nikename = this.nikename
+      this.$post('/api/user', body)
         .then((data) => {
           if (data.body.status === 'OK') {
-            alert('登陆成功')
+            alert('注册成功')
             // TODOs jump to ？ where
           }
         })
-    },
-    jumpSignUp () {
-      // TODOs jump sign up page
     }
   }
 
@@ -79,16 +90,22 @@ export default {
 
 #signup>img{
   width: 60%;
-  /* margin-top: 12.5%; */
+  margin-top: -25%;
   /* margin-bottom: 12.5%; */
 }
 
-.icon{
+#signup form{
+  border:1px solid rgb(0, 102, 153);
+  border-radius:1rem;
+  background-color:white;
+}
+
+#signup .icon{
   width: 2rem;
   height: 2rem;
 }
 
-form span{
+#signup form span{
   box-sizing: border-box;
   width: 30rem;
   height: 4rem;
@@ -100,10 +117,10 @@ form span{
   /* background-color: rgba(255, 255, 255, 0.5); */
   /* border:1px solid rgb(0, 102, 153); */
   /* border-radius: 1.7rem; */
-  /* margin-top:5rem; */
+  margin:1rem;
 }
 
-span>input{
+#signup span>input{
   color: rgb(102, 102, 102);
   padding:1rem;
   width:24rem;
@@ -112,20 +129,11 @@ span>input{
   border-bottom:1px solid rgb(0, 102, 153);
 }
 
-span>input:focus{
+#signup span>input:focus{
   outline:none;
 }
 
-#forget {
-  margin-top:1rem;
-  margin-bottom:1rem;
-  margin-left:70%;
-  background:none;
-  color: rgb(102, 102, 102);
-  border:none;
-}
-
-div>input {
+#signup div>input {
   margin:auto;
   color:white;
   box-sizing: border-box;
@@ -137,15 +145,17 @@ div>input {
   font-size:2rem;
 }
 
-#signin{
-  background:rgb(0, 102, 153);
-}
-#signupbutton{
+#signup #signupbutton{
   background:rgb(204, 51, 0);
+  margin:1rem;
 }
-form div{
+#signup form div{
   display:flex;
   flex-direction:row;
   justify-content: space-around;
+}
+#signup #third ul{
+  display: flex;
+  flex-direction: row;
 }
 </style>

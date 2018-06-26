@@ -43,7 +43,7 @@ export default {
     },
     jumpSignUp () {
       // TODOs jump sign up page
-        this.$router.push({name: 'signup'})
+      this.$router.push({name: 'signup'})
     }
   }
 
