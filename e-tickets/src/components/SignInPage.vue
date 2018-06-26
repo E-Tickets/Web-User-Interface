@@ -5,11 +5,11 @@
       <form>
         <span>
           <img class="icon" src="../../static/img/signin/user.png" alt="">
-          <input v-model="username" type="text" />
+          <input v-model="username" v-input type="text" />
         </span>
         <span>
           <img class="icon" src="../../static/img/signin/password.png" alt="">
-          <input v-model="password" type="text" />
+          <input v-model="password" v-input="password" type="text" />
         </span>
         <input id="forget" type="button" value="忘记密码?">
         <div>

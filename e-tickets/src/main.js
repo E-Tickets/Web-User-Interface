@@ -10,6 +10,19 @@ Vue.use(VueResource)
 
 Vue.http.options.root = '/api'
 
+// custom vue zhiling
+Vue.directive('input', {
+  bind (el, binding, vnode) {
+    el.onfocus = () => {
+      el.value = ''
+      console.log(el, binding)
+      if (binding.expression === 'password') {
+        el.setAttribute('type', 'password')
+      }
+    }
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

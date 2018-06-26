@@ -5,19 +5,19 @@
       <form>
         <span>
           <img class="icon" src="../../static/img/signup/user.png" alt="">
-          <input v-model="username" type="text" />
+          <input v-model="username" v-input="" type="text" />
         </span>
         <span>
           <img class="icon" src="../../static/img/signup/nickname.png" alt="">
-          <input v-model="nickname" type="text" />
+          <input v-model="nickname" v-input type="text" />
         </span>
         <span>
           <img class="icon" src="../../static/img/signup/password.png" alt="">
-          <input v-model="password" type="password" />
+          <input v-model="password" v-input="password" type="text" />
         </span>
         <span>
           <img class="icon" src="../../static/img/signup/ensure.png" alt="">
-          <input v-model="passwordconfirm" type="password" />
+          <input v-model="passwordconfirm" v-input="password" type="text" />
         </span>
         <div>
           <input id="signupbutton" type="button" value="完成注册" v-on:click="signUp()">
