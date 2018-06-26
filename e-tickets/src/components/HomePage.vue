@@ -160,10 +160,6 @@ export default {
         console.log(movies)
         this.movielist = movies
       })
-    // this.$http.jsonp('api/movies/status/1')
-    //   .then(function (response) {
-    //     console.log(response.data)
-    //   })
   }
 }
 

@@ -1,37 +1,74 @@
 <template>
   <div>
-    <div id="sign">
+    <div id="signup">
       <img src="../../static/img/signin/title.png" alt="">
       <form>
         <span>
           <img class="icon" src="../../static/img/signin/user.png" alt="">
-          <input type="text" value="用户名">
+          <input v-model="username" type="text" />
         </span>
         <span>
           <img class="icon" src="../../static/img/signin/password.png" alt="">
-          <input type="text" value="密码">
+          <input v-model="password" type="text" />
         </span>
-        <input id="forget" type="button" value="忘记密码?">
+        <span>
+          <img class="icon" src="../../static/img/signin/password.png" alt="">
+          <input v-model="password" type="text" />
+        </span>
+        <span>
+          <img class="icon" src="../../static/img/signin/password.png" alt="">
+          <input v-model="password" type="text" />
+        </span>
         <div>
-          <input id="signin" type="button" value="登陆">
-          <input id="signup" type="button" value="注册">
+          <input id="signupbutton" type="button" value="注册" >
         </div>
       </form>
+      <div>
+        <p></p>
+        <ul></ul>
+      </div>
     </div>
   </div>
 </template>
 <script>
+export default {
+  data () {
+    return {
+      username: '用户名',
+      password: '密码'
+    }
+  },
+  methods: {
+    signIn () {
+      const body = {}
+      body.username = this.username
+      body.password = this.password
+      this.$post('/api/session/user', body)
+        .then((data) => {
+          if (data.body.status === 'OK') {
+            alert('登陆成功')
+            // TODOs jump to ？ where
+          }
+        })
+    },
+    jumpSignUp () {
+      // TODOs jump sign up page
+    }
+  }
+
+}
 </script>
 <style scope>
-#sign{
+#signup{
   position: absolute;
   top:0;
   left:0;
   right:0;
   bottom:0;
-  background-image: url('../../static/img/signin/background.png');
+  background-color: white;
+  background-image: url('../../static/img/signup/background.png');
   background-repeat:no-repeat;
-  background-size:100% 100%;
+  background-size:100%;
   z-index:2;
   display: flex;
   flex-direction: column;
@@ -40,7 +77,7 @@
   align-items: center;
 }
 
-#sign>img{
+#signup>img{
   width: 60%;
   /* margin-top: 12.5%; */
   /* margin-bottom: 12.5%; */
@@ -60,10 +97,10 @@ form span{
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.5);
-  border:1px solid rgb(0, 102, 153);
-  border-radius: 1.7rem;
-  margin-top:5rem;
+  /* background-color: rgba(255, 255, 255, 0.5); */
+  /* border:1px solid rgb(0, 102, 153); */
+  /* border-radius: 1.7rem; */
+  /* margin-top:5rem; */
 }
 
 span>input{
@@ -72,6 +109,7 @@ span>input{
   width:24rem;
   background:rgba(255,255,255,0);
   border:none;
+  border-bottom:1px solid rgb(0, 102, 153);
 }
 
 span>input:focus{
@@ -102,7 +140,7 @@ div>input {
 #signin{
   background:rgb(0, 102, 153);
 }
-#signup{
+#signupbutton{
   background:rgb(204, 51, 0);
 }
 form div{
