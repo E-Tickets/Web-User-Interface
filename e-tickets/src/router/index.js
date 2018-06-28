@@ -39,7 +39,7 @@ export default new Router({
     {
       // id means the movie id, for that we can use this page for every movie
       path: '/moviedetail/:id',
-      name: 'moviedetail',
+      name: 'Moviedetail',
       component: MovieDetailPage
     },
     {

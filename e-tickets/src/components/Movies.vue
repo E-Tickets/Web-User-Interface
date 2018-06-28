@@ -23,7 +23,7 @@ export default {
         console.log('purchase:' + this.movieId)
         // todo this.$router.push({name: 'moviedetail', params: {id: this.movieId}})
       } else {
-        this.$router.push({name: 'moviedetail', params: {id: this.movieId}})
+        this.$router.push({name: 'Moviedetail', params: {id: this.movieId}})
       }
     }
   }

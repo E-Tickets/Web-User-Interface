@@ -52,7 +52,7 @@
           </p>
         </div>
       </div>
-      <button id="purchase">特惠抢票</button>
+      <button id="purchasebutton" v-on:click="jumpToPurchase()">特惠抢票</button>
     </div>
   </div>
 </template>
@@ -65,6 +65,7 @@ export default {
         title: '后来的你们',
         tags: '爱情 / 剧情',
         country: '中国大陆',
+        image: '',
         length: '120',
         time: '2018-04-28',
         content: '这是一个爱情故事，关于一对异乡漂泊的年轻人。这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识十年前，见清和小晓偶然地相识在归乡过年的火车上。两人怀揣着共同的梦想，一起在北京打拼，并开始了一段相聚相离的情感之路。十年后，见清和小晓在飞机上再次偶然重逢……',
@@ -78,6 +79,9 @@ export default {
     }
   },
   methods: {
+    jumpToPurchase () {
+      this.$router.push({name: 'Purchase', params: {id: this.movie.movieId}})
+    },
     goBack () {
       window.history.length > 1
         ? this.$router.go(-1)
@@ -209,7 +213,7 @@ export default {
   color:rgb(0, 153, 204);
 }
 
-#purchase {
+#purchasebutton {
   display:fixed;
   bottom:0px;
   width:100%;
