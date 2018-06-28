@@ -13,8 +13,8 @@
         </span>
         <input id="forget" type="button" value="忘记密码?">
         <div>
-          <input id="signin" type="button" value="登陆" v-on:click="signIn()">
-          <input id="signup" type="button" value="注册" v-on:click="jumpSignUp()">
+          <input class="myblue" type="button" value="登陆" v-on:click="signIn()">
+          <input class="myred" type="button" value="注册" v-on:click="jumpSignUp()">
         </div>
       </form>
     </div>
@@ -45,7 +45,12 @@ export default {
     },
     jumpSignUp () {
       // TODOs jump sign up page
-      this.$router.push({name: 'signup'})
+      this.$router.push({name: 'SignUp'})
+    },
+    goBack () {
+      window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
     }
   }
 
@@ -128,12 +133,14 @@ export default {
   font-size:2rem;
 }
 
-#sign #signin{
+.myblue{
   background:rgb(0, 102, 153);
 }
-#sign #signup{
+
+.myred{
   background:rgb(204, 51, 0);
 }
+
 #sign form div{
   display:flex;
   flex-direction:row;

@@ -2,7 +2,7 @@
   <div>
     <div id="detail">
       <div id="header">
-        <img src="../../static/img/arrow.png" alt="">
+        <img src="../../static/img/arrow.png" alt="" v-on:click="goBack()">
         <span>影片详情</span>
         <img src="../../static/img/message.png" alt="">
       </div>
@@ -74,6 +74,13 @@ export default {
         number_1: 123321,
         number_2: 12332
       }
+    }
+  },
+  methods: {
+    goBack () {
+      window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
     }
   },
   created () {
