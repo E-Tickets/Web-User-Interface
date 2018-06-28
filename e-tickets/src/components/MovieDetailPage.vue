@@ -6,7 +6,8 @@
         <span>影片详情</span>
         <img src="../../static/img/message.png" alt="">
       </div>
-      <div id="core">
+      <div id="moviedetail">
+        <div id="core">
         <div>
           <p>{{movie.title}}</p>
           <p>评分 9.0</p>
@@ -15,40 +16,39 @@
           <p>{{movie.time}} 在中国大陆上映</p>
         </div>
         <!-- 正式生产请使用这一个img标签 -->
-        <!-- <img src="" alt=""> -->
+        <!-- <img v-bind:src="movie.image" alt=""> -->
         <!-- 测试时使用静态文件先 -->
         <img src="../../static/img/movie00001.jpg" alt="">
       </div>
-      <div id="moviedetail">
         <div id="comment">
           <div>
-          <p>{{comment.number_1}}</p>
-          <p>人正在期待中</p>
-          <button>
-            <img src="../../static/img/setting2.png" alt="">
-            期待
-          </button>
+            <p>{{comment.number_1}}</p>
+            <p>人正在期待中</p>
+            <button>
+              <img src="../../static/img/setting2.png" alt="">
+              期待
+            </button>
+          </div>
+          <div>
+            <p>{{comment.number_2}}</p>
+            <p>人已吐槽</p>
+            <button>
+              <img src="../../static/img/chat3.png" alt="">
+              吐槽
+            </button>
+          </div>
         </div>
-        <div>
-          <p>{{comment.number_2}}</p>
-          <p>人已吐槽</p>
-          <button>
-            <img src="../../static/img/chat3.png" alt="">
-            吐槽
-          </button>
-        </div>
-        </div>
-        <article>
+        <article id="longinfo">
           {{movie.content}}
         </article>
         <hr>
-        <div>
+        <div id="stuffinfo">
           <p>演职人员</p>
           <p>
-            导演：{{movie.director}}
+            导演：<span>{{movie.director}}</span>
           </p>
           <p>
-            主演: {{movie.actors}}
+            主演：<span>{{movie.actors}}</span>
           </p>
         </div>
       </div>
@@ -61,14 +61,15 @@ export default {
   data () {
     return {
       movie: {
+        movieId: '7',
         title: '后来的你们',
         tags: '爱情 / 剧情',
         country: '中国大陆',
         length: '120',
         time: '2018-04-28',
-        content: '这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识在归乡过年的火车上。两人怀揣着共同的梦想，一起在北京打拼，并开始了一段相聚相离的情感之路。十年后，见清和小晓在飞机上再次偶然重逢……',
+        content: '这是一个爱情故事，关于一对异乡漂泊的年轻人。这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识十年前，见清和小晓偶然地相识在归乡过年的火车上。两人怀揣着共同的梦想，一起在北京打拼，并开始了一段相聚相离的情感之路。十年后，见清和小晓在飞机上再次偶然重逢……',
         director: '刘若英',
-        actors: '周冬雨'
+        actors: '井柏然 周冬雨'
       },
       comment: {
         number_1: 123321,
@@ -96,6 +97,7 @@ export default {
   bottom: 0;
   z-index: 2;
   color:black;
+  background-color:white;
 }
 
 #detail img{
@@ -106,7 +108,7 @@ export default {
 #header {
   background-color: rgb(0, 102, 153);
   width:100%;
-  height:4rem;
+  height:6%;
   display:flex;
   flex-direction: row;
   align-items:center;
@@ -121,9 +123,15 @@ export default {
   margin:auto;
 }
 
+#moviedetail{
+  height: 88%;
+  overflow: auto;
+  scroll-behavior: auto;
+}
+
 #core {
   width: 100%;
-  height: 31%;;
+  height: 35%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -156,6 +164,59 @@ export default {
   display:flex;
   flex-direction:row;
   justify-content:space-around;
+}
+#comment div{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
+#comment div :first-child{
+  margin:0;
+  font-size:2.5rem;
+  font-weight:600;
+}
+
+#comment button{
+  color:gray;
+  width:15rem;
+  height:4rem;
+  border:none;
+  border-radius:5px;
+  background-color:rgb(204, 204, 204);
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+}
+
+#longinfo{
+  margin:2rem 2rem 0 2rem;
+  font-size:1.75rem;
+  line-height:2.5rem;
+}
+
+#stuffinfo{
+  margin: 2rem 2rem 0 2rem;
+  font-size:1.75rem;
+}
+#stuffinfo p:first-child{
+  font-size:2rem;
+  font-weight:600;
+}
+
+#stuffinfo span{
+  color:rgb(0, 153, 204);
+}
+
+#purchase {
+  display:fixed;
+  bottom:0px;
+  width:100%;
+  height:6%;
+  border:none;
+  color:white;
+  font-size:2rem;
+  background:red;
 }
 </style>
