@@ -28,7 +28,7 @@
         </div>
         <hr>
         <div id="theatre" >
-          <div v-for="theatre in theatres" v-bind:key="theatre.index" v-on:click="jumpToThertre(theatre.thertreId)">
+          <div v-for="theatre in theatres" v-bind:key="theatre.index" v-on:click="jumpToThertre(theatre.id)">
             <div>
               <p>{{theatre.name}}</p>
               <p>￥{{theatre.price}}起</p>
@@ -45,7 +45,6 @@
 export default {
   data () {
     return {
-      cs: [],
       dates: [
         {
           month: '6',
@@ -77,14 +76,7 @@ export default {
       //     name: '区域'
       //   }
       // ],
-      theatres: [
-        {
-          name: '金逸珠江国际影城（大学城）',
-          price: '41',
-          time: '22:00 23:00 02:00',
-          location: '1.1'
-        }
-      ]
+      theatres: []
     }
   },
   methods: {
@@ -94,20 +86,29 @@ export default {
         : this.$router.push('/')
     },
     jumpToThertre (thertreId) {
-      this.$router.push({name: 'SignUp'})
+      this.$router.push({name: 'TheatreDetail', params: {mid: this.$route.params.id, tid: thertreId}})
     }
   },
   created () {
     // get data
     // use the id in route parameter
-    this.$http.get('api/schedules/movieid/$' + this.$route.param.id)
+    this.$http.get(`api/schedules/movieid/${this.$route.params.id}`)
       .then((data) => {
-        const schedules = data.body.data.movies
-        schedules.forEach((item) => {
+        console.log(data.body.data)
+        const cinemas = data.body.data
+        cinemas.forEach((item) => {
+          let lowPrice = 9999
+          let time = ''
+          item.schedules.forEach((schedule) => {
+            lowPrice = lowPrice < schedule.price ? lowPrice : schedule.price
+            time = time + ' ' + schedule.time.slice(10, 16)
+          })
           this.theatres.push({
-            name: item.cinema_id,
-            price: item.price,
-            time: item.time
+            id: item.cinema_id,
+            name: item.cinema_name,
+            price: lowPrice,
+            time: time,
+            location: 1.3
           })
         })
         // how to change the id to name

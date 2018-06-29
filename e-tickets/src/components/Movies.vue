@@ -1,7 +1,7 @@
 <template>
   <li id="movie" v-on:click="clickevent()">
     <img v-bind:src="image" v-bind:alt="title">
-    <div id="detail">
+    <div id="detailinfo">
       <div class="title">{{ title }}</div>
       <!-- <div class="info">豆瓣评分 &nbsp;: &nbsp; <span class="score">{{ score }}</span></div> -->
       <div class="info">导演 : {{ director }}</div>
@@ -20,10 +20,22 @@ export default {
       const target = ev.target || ev.srcElement
       console.log(target.nodeName)
       if (target.nodeName === 'SPAN') {
-        console.log('purchase:' + this.movieId)
+        // get the signed username
+        // if none then push signin page
+        this.$http.get('api/user/self')
+          .then((data) => {
+            // successful
+            console.log(data.body.data.username)
+            this.$router.push({name: 'Purchase', params: {id: this.movieId}})
+          }, () => {
+            // fail
+            this.$router.push({name: 'Sign'})
+          })
+        console.log('Purchase:' + this.movieId)
         // todo this.$router.push({name: 'moviedetail', params: {id: this.movieId}})
       } else {
         this.$router.push({name: 'Moviedetail', params: {id: this.movieId}})
+        // this.$router.push({path: '/moviedetail/:id', component: {id: this.movieId}})
       }
     }
   }
@@ -44,7 +56,7 @@ export default {
   margin: 4% 4% 4% 4%;
 }
 
-#detail {
+#detailinfo {
   margin: 4% 0% 4% 0%;
   width: 68%;
 }

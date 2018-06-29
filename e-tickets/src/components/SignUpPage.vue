@@ -61,12 +61,16 @@ export default {
         .then((data) => {
           if (data.body.status === 'OK') {
             alert('注册成功')
-            // TODOs jump to ？ where
+            this.goBack()
           }
         })
+    },
+    goBack () {
+      window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
     }
   }
-
 }
 </script>
 <style scope>

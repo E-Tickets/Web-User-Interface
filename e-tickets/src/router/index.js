@@ -7,6 +7,8 @@ import SignInPage from '@/components/SignInPage'
 import SignUpPage from '@/components/SignUpPage'
 import MovieDetailPage from '@/components/MovieDetailPage'
 import PurchasePage from '@/components/PurchasePage'
+import TheatreDetailPage from '@/components/TheatreDetailPage'
+
 Vue.use(Router)
 
 export default new Router({
@@ -46,6 +48,11 @@ export default new Router({
       path: '/moviepurchase/:id',
       name: 'Purchase',
       component: PurchasePage
+    },
+    {
+      path: '/movie/:mid/theatre/:tid',
+      name: 'TheatreDetail',
+      component: TheatreDetailPage
     }
   ]
 })

@@ -37,8 +37,9 @@ export default {
         .then((data) => {
           if (data.body.status === 'OK') {
             alert('登陆成功')
-            // TODOs jump to ？ where
+            this.goBack()
           } else {
+            alert('登录失败')
             console.log(data)
           }
         })

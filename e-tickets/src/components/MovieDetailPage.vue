@@ -39,7 +39,7 @@
           </div>
         </div>
         <article id="longinfo">
-          {{movie.content}}
+          {{movie.summary}}
         </article>
         <hr>
         <div id="stuffinfo">
@@ -61,14 +61,14 @@ export default {
   data () {
     return {
       movie: {
-        movieId: '7',
+        movieId: '',
         title: '后来的你们',
         tags: '爱情 / 剧情',
         country: '中国大陆',
         image: '',
         length: '120',
         time: '2018-04-28',
-        content: '这是一个爱情故事，关于一对异乡漂泊的年轻人。这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识十年前，见清和小晓偶然地相识在归乡过年的火车上。两人怀揣着共同的梦想，一起在北京打拼，并开始了一段相聚相离的情感之路。十年后，见清和小晓在飞机上再次偶然重逢……',
+        summary: '这是一个爱情故事，关于一对异乡漂泊的年轻人。这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识十年前，见清和小晓偶然地相识在归乡过年的火车上。两人怀揣着共同的梦想，一起在北京打拼，并开始了一段相聚相离的情感之路。十年后，见清和小晓在飞机上再次偶然重逢……',
         director: '刘若英',
         actors: '井柏然 周冬雨'
       },
@@ -89,19 +89,28 @@ export default {
     }
   },
   created () {
-    this.$http.get('api/movie/$' + this.$route.param.id)
+    const movieId = this.$route.params.id
+    // get the movie detail data
+    this.$http.get('api/movie/' + movieId)
       .then((data) => {
+        console.log(data)
         const moviedata = data.body.data
-        this.movie.id = this.$route.param.id
+        this.movie.movieId = movieId
         this.movie.title = moviedata.title
         this.movie.tags = moviedata.tags.reduce((acc, item) => acc + ' ' + item)
         // country:
         this.movie.image = moviedata.poster
         // length:
         // time: '2018-04-28',
-        // content: '这是一个爱情故事，关于一对异乡漂泊的年轻人。这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识十年前，见清和小晓偶然地相识在归乡过年的火车上。两人怀揣着共同的梦想，一起在北京打拼，并开始了一段相聚相离的情感之路。十年后，见清和小晓在飞机上再次偶然重逢……',
+        // summary: '这是一个爱情故事，关于一对异乡漂泊的年轻人。这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识这是一个爱情故事，关于一对异乡漂泊的年轻人。十年前，见清和小晓偶然地相识十年前，见清和小晓偶然地相识在归乡过年的火车上。两人怀揣着共同的梦想，一起在北京打拼，并开始了一段相聚相离的情感之路。十年后，见清和小晓在飞机上再次偶然重逢……',
+        this.comment.number_2 = moviedata.comment_amount
         this.movie.director = moviedata.director
         this.movie.actors = moviedata.actors.reduce((acc, item) => acc + ' ' + item)
+      })
+    // get the amount of movie's comment
+    this.$http.get('api/comments/all-comments/movieid/' + movieId + '/amount')
+      .then((data) => {
+        this.comment.number_2 = data.body.data.amount
       })
   }
 }
