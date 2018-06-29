@@ -28,7 +28,7 @@
         </div>
         <hr>
         <div id="theatre" >
-          <div v-for="theatre in theatres" v-bind:key="theatre.index">
+          <div v-for="theatre in theatres" v-bind:key="theatre.index" v-on:click="jumpToThertre(theatre.thertreId)">
             <div>
               <p>{{theatre.name}}</p>
               <p>￥{{theatre.price}}起</p>
@@ -92,10 +92,26 @@ export default {
       window.history.length > 1
         ? this.$router.go(-1)
         : this.$router.push('/')
+    },
+    jumpToThertre (thertreId) {
+      this.$router.push({name: 'SignUp'})
     }
   },
   created () {
-    // todo: get data
+    // get data
+    // use the id in route parameter
+    this.$http.get('api/schedules/movieid/$' + this.$route.param.id)
+      .then((data) => {
+        const schedules = data.body.data.movies
+        schedules.forEach((item) => {
+          this.theatres.push({
+            name: item.cinema_id,
+            price: item.price,
+            time: item.time
+          })
+        })
+        // how to change the id to name
+      })
   }
 }
 </script>
@@ -160,6 +176,14 @@ export default {
 
 #filter span{
   margin:0 2rem 0 2rem;
+}
+
+#theatre>div{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding:0 2rem 0 2rem;
+  border-bottom:0.2rem solid gray;
 }
 
 </style>
