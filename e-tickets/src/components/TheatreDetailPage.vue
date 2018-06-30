@@ -14,16 +14,19 @@
         优惠信息
       </div>
       <div>
+        <img src="" alt="">
+      </div>
+      <div>
         <div id="date" >
           <span v-for="date in dates" v-bind:key="date.index">{{date.month}}月{{date.day}} {{date.describe}}</span>
         </div>
       </div>
       <div id="schedules">
           <div v-for="schedule in schedules" v-bind:key="schedule.index">
-            <span>{{schedule.time}}</span>
+            <span>{{schedule.time}}<br>{{schedule.time}}散场</span>
             <span>国语3D</span>
             <span>￥{{schedule.price}}</span>
-            <button>确定</button>
+            <button v-on:click="sure(schedule.id)">确定</button>
           </div>
         </div>
     </div>
@@ -55,6 +58,7 @@ export default {
         this.name = theatre[0].cinema_name
         theatre.forEach((schedule) => {
           this.schedules.push({
+            id: schedule.schedule_id,
             time: schedule.time.slice(10, 16),
             price: schedule.price
           })

@@ -61,7 +61,7 @@ export default {
   data () {
     return {
       movie: {
-        movieId: '',
+        movieId: '7',
         title: '后来的你们',
         tags: '爱情 / 剧情',
         country: '中国大陆',

@@ -13,7 +13,7 @@
       </div>
       <div id="cdetail">
         <div id="date" >
-          <span v-for="date in dates" v-bind:key="date.index">{{date.month}}月{{date.day}} {{date.describe}}</span>
+          <span v-for="date in dates" v-bind:key="date.index" v-on:click="datefilter(date.month, date.day)">{{date.month}}月{{date.day}} {{date.describe}}</span>
         </div>
         <hr>
         <div id="filter">
@@ -28,7 +28,7 @@
         </div>
         <hr>
         <div id="theatre" >
-          <div v-for="theatre in theatres" v-bind:key="theatre.index" v-on:click="jumpToThertre(theatre.id)">
+          <div v-for="theatre in filteredTheatres" v-bind:key="theatre.index" v-on:click="jumpToThertre(theatre.id)">
             <div>
               <p>{{theatre.name}}</p>
               <p>￥{{theatre.price}}起</p>
@@ -45,38 +45,35 @@
 export default {
   data () {
     return {
-      dates: [
-        {
-          month: '6',
-          day: '25',
-          describe: '今天'
-        },
-        {
-          month: '6',
-          day: '26',
-          describe: '明天'
-        },
-        {
-          month: '6',
-          day: '27',
-          describe: '后天'
-        }
-      ],
-      // filters: [
-      //   {
-      //     name: '区域'
-      //   },
-      //   {
-      //     name: '区域'
-      //   },
-      //   {
-      //     name: '区域'
-      //   },
-      //   {
-      //     name: '区域'
-      //   }
-      // ],
+      dates: [],
+      targetDate: '',
       theatres: []
+      // theatres: [
+      //   {
+      //     id: 9,
+      //     name: 'item.cinema_name',
+      //     price: 'lowPrice',
+      //     time: '12:00',
+      //     date: '6-30',
+      //     location: 1.3
+      //   },
+      //   {
+      //     id: 9,
+      //     name: 'item.cinema_name',
+      //     price: 'lowPrice',
+      //     time: '12:00',
+      //     date: '6-30',
+      //     location: 1.3
+      //   },
+      //   {
+      //     id: 9,
+      //     name: 'item.cinema_name',
+      //     price: 'lowPrice',
+      //     time: '12:00',
+      //     date: '6-30',
+      //     location: 1.3
+      //   }
+      // ]
     }
   },
   methods: {
@@ -87,6 +84,9 @@ export default {
     },
     jumpToThertre (thertreId) {
       this.$router.push({name: 'TheatreDetail', params: {mid: this.$route.params.id, tid: thertreId}})
+    },
+    datefilter (month, day) {
+      this.targetDate = month + '-' + day
     }
   },
   created () {
@@ -98,21 +98,61 @@ export default {
         const cinemas = data.body.data
         cinemas.forEach((item) => {
           let lowPrice = 9999
+          let dates = []
+          let date = ''
           let time = ''
           item.schedules.forEach((schedule) => {
             lowPrice = lowPrice < schedule.price ? lowPrice : schedule.price
-            time = time + ' ' + schedule.time.slice(10, 16)
+            if (date !== '' || schedule.time.slice(6, 10) !== date) {
+              dates.push({date: date, time: time})
+              date = schedule.time.slice(6, 10)
+              time = ''
+            }
+            time = time + schedule.time.slice(10, 16)
           })
-          this.theatres.push({
-            id: item.cinema_id,
-            name: item.cinema_name,
-            price: lowPrice,
-            time: time,
-            location: 1.3
+          dates.forEach(element => {
+            this.theatres.push({
+              id: item.cinema_id,
+              name: item.cinema_name,
+              price: lowPrice,
+              time: element.time,
+              date: element.date,
+              location: 1.3
+            })
           })
         })
         // how to change the id to name
+      }, () => {
+        //
       })
+    // SET DATE
+    const myDate = new Date()
+    this.targetDate = myDate.getMonth() + 1 + '-' + myDate.getDate()
+    this.dates.push({
+      month: myDate.getMonth() + 1,
+      day: myDate.getDate(),
+      describe: '今天'
+    })
+    myDate.setDate(myDate.getDate() + 1)
+    this.dates.push({
+      month: myDate.getMonth() + 1,
+      day: myDate.getDate(),
+      describe: '明天'
+    })
+    myDate.setDate(myDate.getDate() + 1)
+    this.dates.push({
+      month: myDate.getMonth() + 1,
+      day: myDate.getDate(),
+      describe: '后天'
+    })
+  },
+  computed: {
+    filteredTheatres: function () {
+      return this.theatres.filter((theatre) => {
+        console.log(this.targetDate)
+        return theatre.date.match(this.targetDate)
+      })
+    }
   }
 }
 </script>
