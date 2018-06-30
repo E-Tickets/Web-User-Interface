@@ -2,7 +2,7 @@
   <div>
     <div id="theatredetail">
       <div id="header">
-        <img src="../../static/img/arrow.png" alt="" v-on:click="goBack()">
+        <img src="../../static/img/back.png" alt="" v-on:click="goBack()">
         <span>影院</span>
         <img src="" alt="">
       </div>
@@ -13,8 +13,11 @@
       <div id="sale">
         优惠信息
       </div>
-      <div>
-        <img src="" alt="">
+      <div id="poster">
+        <span>
+          <img src="../../static/img/movie00001.jpg" alt="">
+          <img src="../../static/img/downArrow.png" alt="">
+        </span>
       </div>
       <div>
         <div id="date" >
@@ -23,12 +26,14 @@
       </div>
       <div id="schedules">
           <div v-for="schedule in schedules" v-bind:key="schedule.index">
-            <span>{{schedule.time}}<br>{{schedule.time}}散场</span>
+            <span>{{schedule.time}}</span>
             <span>国语3D</span>
+            <!-- <span>{{schedule.endtime}}</span> -->
+            <span>{{schedule.hid}}号厅</span>
             <span>￥{{schedule.price}}</span>
             <button v-on:click="sure(schedule.id)">确定</button>
           </div>
-        </div>
+          </div>
     </div>
   </div>
 </template>
@@ -59,6 +64,7 @@ export default {
         theatre.forEach((schedule) => {
           this.schedules.push({
             id: schedule.schedule_id,
+            hid: schedule.hall_id,
             time: schedule.time.slice(10, 16),
             price: schedule.price
           })
@@ -141,17 +147,47 @@ export default {
 
 #sale {
   box-sizing: border-box;
-  width:90%;
+  width:88%;
   height:5%;
-  margin: 1rem 5% 1rem 5%;
+  margin: 0.2rem 6% 0.2rem 6%;
+  padding: 1rem 0 1rem 0;
   font-size:1.75rem;
   border: 0.1rem solid rgb(255, 102, 0);
+  border-radius: 0.5rem;
   color: rgb(255, 102, 0);
   background-color: rgba(255, 204, 102, 0.65);
   display:flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+#poster{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  width:90%;
+  height:28%;
+  margin: 0 5% 0 5%;
+  background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#poster span{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#poster span :first-child{
+  width: 30%;
+  height: 75%;
 }
 
 #date {
@@ -162,16 +198,39 @@ export default {
   font-size: 2rem;
   width:100%;
   height:6%;
+  padding:0.5rem;
+  box-sizing:border-box;
 }
 
-#schedules div{
+#schedules {
+  width:100%;
+  height: 64%;
+  overflow: auto;
+  scroll-behavior: auto;
+}
+
+#schedules>div{
   display:flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   width:94%;
-  height:5%;
+  height: 4rem;
   margin: 1rem 3% 1rem 3%;
+  border-top:0.1rem solid gray;
+}
+
+#schedules div :first-child{
+  font-size:2rem;
+  font-weight:600;
+}
+
+#schedules button{
+  width:5rem;
+  border: 0.1rem solid rgb(0, 102, 153);
+  color: rgb(0, 102, 153);
+  border-radius:0.3rem;
+  background-color: white;
 }
 
 </style>

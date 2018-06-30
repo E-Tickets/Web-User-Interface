@@ -43,7 +43,8 @@ export default {
 </script>
 <style>
 #movie {
-  width: 99%;
+  width: 100%;
+  box-sizing: border-box;
   margin:0;
   display: flex;
   flex-direction: row;

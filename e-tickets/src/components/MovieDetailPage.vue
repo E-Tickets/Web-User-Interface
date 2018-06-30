@@ -2,7 +2,7 @@
   <div>
     <div id="detail">
       <div id="header">
-        <img src="../../static/img/arrow.png" alt="" v-on:click="goBack()">
+        <img src="../../static/img/back.png" alt="" v-on:click="goBack()">
         <span>影片详情</span>
         <img src="../../static/img/message.png" alt="">
       </div>
@@ -61,7 +61,7 @@ export default {
   data () {
     return {
       movie: {
-        movieId: '7',
+        movieId: '',
         title: '后来的你们',
         tags: '爱情 / 剧情',
         country: '中国大陆',

@@ -5,22 +5,22 @@
       <form>
         <span>
           <img class="icon" src="../../static/img/signup/user.png" alt="">
-          <input v-model="username" v-input="" type="text" />
+          <input v-model="username" v-input="" type="text" placeholder="请输入用户名" pattern="^([a-z][A-z])([a-z][A-z][0-9]){15}"/>
         </span>
         <span>
           <img class="icon" src="../../static/img/signup/nickname.png" alt="">
-          <input v-model="nickname" v-input type="text" />
+          <input v-model="nickname" v-input type="text" placeholder="请输入昵称"/>
         </span>
         <span>
           <img class="icon" src="../../static/img/signup/password.png" alt="">
-          <input v-model="password" v-input="password" type="text" />
+          <input v-model="password" v-input="password" type="text" placeholder="请输入密码"/>
         </span>
         <span>
           <img class="icon" src="../../static/img/signup/ensure.png" alt="">
-          <input v-model="passwordconfirm" v-input="password" type="text" />
+          <input v-model="passwordconfirm" v-input="password" type="text" placeholder="请再次输入密码"/>
         </span>
         <div>
-          <input id="signupbutton" type="button" value="完成注册" v-on:click="signUp()">
+          <input id="signupbutton" type="submit" value="完成注册" v-on:click="signUp()">
         </div>
       </form>
       <div id="third">

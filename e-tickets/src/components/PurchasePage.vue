@@ -2,7 +2,7 @@
   <div>
     <div id="purchase">
       <div id="header">
-        <img src="../../static/img/arrow.png" alt="" v-on:click="goBack()">
+        <img src="../../static/img/back.png" alt="" v-on:click="goBack()">
         <span>购票</span>
           <img src="../../static/img/location.png" alt="">
         <!-- <div id="location"> -->
