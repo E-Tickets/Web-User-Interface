@@ -14,7 +14,8 @@ module.exports = {
     // !! added this item to fix the origin problem !! ~~~
     proxyTable: {
       '/api': {
-        target: 'http://172.18.157.240:8000', // set the host and port for test,and dont forget the http
+        target: 'http://172.19.129.56:8000',
+        // target: 'http://172.18.157.240:8000', // set the host and port for test,and dont forget the http
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/'

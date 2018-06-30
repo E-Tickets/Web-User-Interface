@@ -103,13 +103,15 @@ export default {
           let time = ''
           item.schedules.forEach((schedule) => {
             lowPrice = lowPrice < schedule.price ? lowPrice : schedule.price
-            if (date !== '' || schedule.time.slice(6, 10) !== date) {
+            if (date !== '' && date.indexOf(schedule.time.slice(5, 10)) === -1) {
               dates.push({date: date, time: time})
-              date = schedule.time.slice(6, 10)
+              console.log(date)
               time = ''
             }
+            date = schedule.time.slice(5, 10)
             time = time + schedule.time.slice(10, 16)
           })
+          dates.push({date: date, time: time})
           dates.forEach(element => {
             this.theatres.push({
               id: item.cinema_id,
@@ -120,6 +122,7 @@ export default {
               location: 1.3
             })
           })
+          console.log(this.theatres)
         })
         // how to change the id to name
       }, () => {
@@ -127,7 +130,10 @@ export default {
       })
     // SET DATE
     const myDate = new Date()
-    this.targetDate = myDate.getMonth() + 1 + '-' + myDate.getDate()
+    const nowMonth = myDate.getMonth() + 1
+    this.targetDate = nowMonth < 10 ? `0${nowMonth}` : nowMonth
+    // console.log(this.targetDate)
+    this.targetDate = this.targetDate + '-' + (myDate.getDate() < 10 ? `0${myDate.getDate()}` : myDate.getDate())
     this.dates.push({
       month: myDate.getMonth() + 1,
       day: myDate.getDate(),
@@ -144,6 +150,10 @@ export default {
       month: myDate.getMonth() + 1,
       day: myDate.getDate(),
       describe: '后天'
+    })
+    this.dates.forEach((item) => {
+      item.month = item.month < 10 ? '0' + item.month : item.month
+      item.day = item.day < 10 ? '0' + item.day : item.day
     })
   },
   computed: {
