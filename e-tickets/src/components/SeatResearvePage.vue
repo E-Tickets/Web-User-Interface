@@ -16,6 +16,9 @@
         提示信息：为了保证观影体验，请在电影开始前十五分钟取票进场
       </div>
       <div id="seat">
+        <ul>
+          <li v-for="seat in seats"></li>
+        </ul>
         <span>已选作为</span>
         <div></div>
         <button></button>
@@ -28,7 +31,8 @@ export default {
     return {
       name: '',
       dates: [],
-      schedules: []
+      schedules: [],
+      seats: []
     }
   },
   methods: {
@@ -39,42 +43,12 @@ export default {
     }
   },
   created () {
+    for (let i = 0; i < 64; i++) {
+      this.seats.push({occupy: true})
+    }
     // get data
     // use the id in route parameter
-    this.$http.get(`api/schedules/movieid/${this.$route.params.mid}/cinemaid/${this.$route.params.tid}`)
-      .then((data) => {
-        console.log(data.body.data)
-        const theatre = data.body.data
-        this.name = theatre[0].cinema_name
-        theatre.forEach((schedule) => {
-          this.schedules.push({
-            id: schedule.schedule_id,
-            hid: schedule.hall_id,
-            time: schedule.time.slice(10, 16),
-            price: schedule.price
-          })
-        })
-        // how to change the id to name
-      })
-    const myDate = new Date()
-    this.dates.push({
-      month: myDate.getMonth() + 1,
-      day: myDate.getDate(),
-      describe: '今天'
-    })
-    myDate.setDate(myDate.getDate() + 1)
-    this.dates.push({
-      month: myDate.getMonth() + 1,
-      day: myDate.getDate(),
-      describe: '明天'
-    })
-    myDate.setDate(myDate.getDate() + 1)
-    this.dates.push({
-      month: myDate.getMonth() + 1,
-      day: myDate.getDate(),
-      describe: '后天'
-    })
-    console.log(this.dates)
+    // this.$http.get(`api/schedules/movieid/${this.$route.params.mid}/cinemaid/${this.$route.params.tid}`)
   }
 }
 </script>
