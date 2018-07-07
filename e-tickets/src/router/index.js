@@ -8,6 +8,7 @@ import SignUpPage from '@/components/SignUpPage'
 import MovieDetailPage from '@/components/MovieDetailPage'
 import PurchasePage from '@/components/PurchasePage'
 import TheatreDetailPage from '@/components/TheatreDetailPage'
+import SeatResearvePage from '@/components/SeatResearvePage'
 
 Vue.use(Router)
 
@@ -53,6 +54,11 @@ export default new Router({
       path: '/movie/:mid/theatre/:tid',
       name: 'TheatreDetail',
       component: TheatreDetailPage
+    },
+    {
+      path: '/movie/:mid/theatre/:tid/seat',
+      name: 'SeatResearve',
+      component: SeatResearvePage
     }
   ]
 })
