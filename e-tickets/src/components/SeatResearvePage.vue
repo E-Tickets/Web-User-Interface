@@ -16,16 +16,26 @@
         提示信息：为了保证观影体验，请在电影开始前十五分钟取票进场
       </div>
       <div id="seat">
-        <span>3号厅银幕</span>
+        <div>3号厅银幕<br>荧幕中央</div>
+
         <div>
           <ul id="roworder"> <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ul>
-        <ul id="seatarea" v-on:click="seatSelect()">
-          <li v-for="seat in seats" v-bind:key="seat.index" v-bind:class="{occupy: seat.occupy}"></li>
+        <ul id="seatarea" >
+          <li v-for="seat in seats"
+            v-bind:key="seat.index"
+            v-bind:class="{occupy: seat.occupy, avaliable: !seat.occupy&&!seat.selected, selected: !seat.occupy&&seat.selected }"
+            v-on:click="seatSelect(seat)">
+          </li>
         </ul>
         </div>
-        <span>已选作为</span>
-        <div></div>
-        <button></button>
+        <span>已选座位</span>
+        <ul id="seatselected">
+          <li v-for="selectedseat in selected"
+            v-bind:key="selectedseat.index"
+            >{{selectedseat.row}}行{{selectedseat.column}}列<br>￥41</li>
+        </ul>
+        <!-- <div></div> -->
+        <button>确定选座</button>
       </div>
     </div>
   </div>
@@ -48,21 +58,34 @@ export default {
         ? this.$router.go(-1)
         : this.$router.push('/')
     },
-    seatSelect () {
-
+    seatSelect (seat) {
+      console.log(`${seat.row} ${seat.column}`)
+      if (!seat.occupy) {
+        seat.selected = !seat.selected
+        // this.selected.push({row: seat.row, column: seat.column})
+      }
     }
   },
   created () {
     for (let i = 0; i < 64; i++) {
       this.seats.push({
-        ow: i / 8 + 1,
+        row: parseInt(i / 8 + 1),
         column: i % 8 + 1,
-        occupy: true
+        occupy: (i % 2 === 0),
+        selected: false
       })
     }
     // get data
     // use the id in route parameter
     // this.$http.get(`api/schedules/movieid/${this.$route.params.mid}/cinemaid/${this.$route.params.tid}`)
+  },
+  computed: {
+    selected: function () {
+      return this.seats.filter((seat) => {
+        // console.log(this.targetDate)
+        return seat.selected
+      })
+    }
   }
 }
 </script>
@@ -104,11 +127,11 @@ export default {
 
 #seat {
   width:100%;
-  height: 50%;
-  background-color: gray;
+  height: 60%;
+  background-color: rgba(50,50,50,0.2);
 }
 
-#seat span:first-child{
+#seat div:first-child{
   width:20%;
   color:white;
   margin:0 40%;
@@ -163,4 +186,26 @@ export default {
   background-repeat:no-repeat;
 }
 
+.selected {
+  background: url('../../static/img/researve_seats/face_selected.png');
+  background-size: 3rem;
+  background-repeat:no-repeat;
+}
+
+#seatselected {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#seatselected li {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  border: 0.1rem solid black;
+  border-radius: 0.5rem;
+  width: 6rem;
+  margin:0 0.5rem;
+}
 </style>
