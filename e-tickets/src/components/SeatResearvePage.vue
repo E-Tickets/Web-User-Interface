@@ -35,8 +35,8 @@
             >{{selectedseat.row}}行{{selectedseat.column}}列<br>￥41</li>
         </ul>
         <!-- <div></div> -->
-        <button>确定选座</button>
       </div>
+      <button>确定选座</button>
     </div>
   </div>
 </template>
@@ -127,7 +127,7 @@ export default {
 
 #seat {
   width:100%;
-  height: 60%;
+  height: 83%;
   background-color: rgba(50,50,50,0.2);
 }
 
@@ -207,5 +207,15 @@ export default {
   border-radius: 0.5rem;
   width: 6rem;
   margin:0 0.5rem;
+}
+
+#seatresearve button {
+  box-sizing: border-box;
+  width:100%;
+  height:6%;
+  border:none;
+  color:white;
+  font-size:2rem;
+  background:red;
 }
 </style>

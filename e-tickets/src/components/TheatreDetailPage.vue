@@ -51,6 +51,9 @@ export default {
       window.history.length > 1
         ? this.$router.go(-1)
         : this.$router.push('/')
+    },
+    sure (sid) {
+      this.$router.push({name: 'SeatResearve', params: {mid: this.$route.params.id, tid: this.$route.params.tid, sid: sid}})
     }
   },
   created () {

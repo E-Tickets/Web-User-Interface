@@ -56,7 +56,7 @@ export default new Router({
       component: TheatreDetailPage
     },
     {
-      path: '/movie/:mid/theatre/:tid/seat',
+      path: '/movie/:mid/theatre/:tid/:sid',
       name: 'SeatResearve',
       component: SeatResearvePage
     }
