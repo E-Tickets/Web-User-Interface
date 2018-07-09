@@ -67,6 +67,31 @@ export default {
     }
   },
   created () {
+    this.$http.get(`/api/schedule/$schedule_id/${this.$route.params.sid}`)
+      .then((data) => {
+      // success
+        const schedule = data.body.data
+      // {
+      //   "status": "OK",
+      //   "message": "Get schedule infomation successfully.",
+      //   "data": {
+      //     "schedule_id": 5,
+      //     "cinema_id": 1,
+      //     "hall_id": 1,
+      //     "time": "2018/05/03-15:00",
+      //     "movie_id": 8,
+      //     "price": 80,
+      //     "seat": [
+      //       120,
+      //       121,
+      //       130,
+      //       131
+      //     ]
+      //   }
+      // }
+      }, (data) => {
+        // fail
+      })
     for (let i = 0; i < 64; i++) {
       this.seats.push({
         row: parseInt(i / 8 + 1),
